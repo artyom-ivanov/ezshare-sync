@@ -1,4 +1,5 @@
 # ezShare Sync
+Simple app for sync folder on ezShare sync and folder on your computer. You must be on ezShare network to sync.
 
 ### Install
 Clone this repo, go to project folder and type:
