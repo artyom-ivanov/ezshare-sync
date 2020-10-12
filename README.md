@@ -11,8 +11,8 @@ For start app type in console:
 
 `node index.js -i DIRECTORY -o OUTPUT_FOLDER`
 
-`DIRECTORY` - folder url from ezShare web interface
-`OUTPUT_FOLDER` - foldername, where app will save files
+- `DIRECTORY` - folder url from ezShare web interface
+- `OUTPUT_FOLDER` - foldername, where app will save files
 
 For example, for saving to "out" folder:
 
