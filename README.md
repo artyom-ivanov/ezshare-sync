@@ -9,10 +9,11 @@ Clone this repo, go to project folder and type:
 ### Usage
 For start app type in console:
 
-`node index.js -i DIRECTORY -o OUTPUT_FOLDER`
+`node index.js -i DIRECTORY -o OUTPUT_FOLDER -f FULLSYNC_MODE`
 
 `DIRECTORY` - folder url from ezShare web interface
 `OUTPUT_FOLDER` - foldername, where app will save files
+`FULLSYNC_MODE` - check output folder every iteration or not (y/n)
 
 For example, for saving to "out" folder:
 
