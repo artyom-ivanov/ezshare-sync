@@ -17,6 +17,7 @@ const input = argv.i;
 const output = './'+argv.o;
 const fullsync = argv.f;
 const filesTmpNow = [];
+let filesDownloaded = 0;
 
 console.log(`Start sync in ${fullsync == "y" ? "full mode (check output folder every iteration)" : "not full mode (not checking output folder, save in temporary variable)"}`);
 
@@ -31,7 +32,6 @@ var download = function (url, dest, cb) {
     response.pipe(file);
     file.on('finish', function () {
       console.log("Ok: "+url);
-      filesTmpNow.push(url);
       file.close(cb); // close() is async, call cb after close completes.
     });
   }).on('error', function (err) { // Handle errors
@@ -78,8 +78,9 @@ function start() {
               if (!filesTmpNow.includes(href)) {
                 files.push({
                   "href": href,
-                  "name": filesNow.length+"."+filename.split(".")[1]
+                  "name": filesDownloaded+"."+filename.split(".")[1]
                 })
+                filesDownloaded += 1;
               }
             }
 
@@ -87,6 +88,7 @@ function start() {
         });
 
         async.eachLimit(files, 2, function (file, next) {
+          filesTmpNow.push(file.href);
           download(file.href, output+'/'+file.name, next);
         }, function () {
           console.log('Finished');
@@ -95,7 +97,9 @@ function start() {
       }
     })
     .catch((err) => {
-      throw new Error(err);
+      console.log('Error', err.code);
+      inProcess = false;
+      // throw new Error(err);
     });
 }
 
